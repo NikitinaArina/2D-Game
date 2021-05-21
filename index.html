@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game for practice</title>
+    <link rel="shortcut icon" href="./img/icon.png" type="image/png" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      .panel {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-image: url(./img/bg-game.png);
+        width: 100vw;
+        height: 100vh;
+      }
+      .panel ul,
+      h1 {
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+        color: white;
+        padding: 5px;
+      }
+      .panel li {
+        padding: 5px;
+        list-style: none;
+      }
+      form {
+        margin-top: 20px;
+      }
+
+      input[type="text"] {
+        background: rgb(134, 0, 0);
+        color: white;
+        font-size: 16px;
+        min-width: 330px;
+      }
+      ::placeholder {
+        color: white;
+      }
+      input[type="text"],
+      button {
+        padding: 9px;
+      }
+      button {
+        background: rgb(139, 60, 60);
+        cursor: pointer;
+        font-size: 16px;
+        color: white;
+        border: none;
+      }
+
+      #game-over-overlay {
+        display: none;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+      }
+
+      #game-over-overlay {
+        background-image: url(./img/bg-game.png);
+      }
+      #res button {
+        background: rgb(139, 60, 60);
+        border: 3px solid white;
+        font-size: 1.5rem;
+        border-radius: 15px;
+        margin: 10%;
+      }
+      #res {
+        display: none;
+        align-items: center;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+      }
+      #res h1 {
+        margin-bottom: 80px;
+      }
+      table,
+      tr,
+      th {
+        font-size: 25px;
+        border: 3px solid white;
+        border-collapse: collapse;
+        color: white;
+      }
+      table {
+        width: 60%;
+        max-width: 900px;
+        height: 50%;
+      }
+      #res button, button {
+        -webkit-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+        -moz-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+        -ms-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+        -o-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+        transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+        text-decoration: none;
+      }
+
+      #res button:hover, button:hover {
+        color: black;
+        box-shadow: white 0 80px 0px 2px inset;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="panel">
+      <h1>Игра "В погоне за стипендией"</h1>
+      <ul>
+        <li>Введите свое имя и нажмите кнопку начать</li>
+        <li>Уничтожайте монстров по ходу прохождения игры</li>
+        <li>Исользуйте "правую стрелку" и "левую стрелку" для перемещения</li>
+        <li>Используй кнопку "пробел" для того, чтобы ударить противника</li>
+        <li>Для использования умений нажимайте 1, 2, 3 и 4. Навыки имеют время перезарядки!</li>
+      </ul>
+      <form id="preInitForm">
+        <input
+          id="nickname"
+          name="nickname"
+          type="text"
+          placeholder="Введи здесь свое имя"
+          required
+        />
+        <button type="button" id="sub">Начать игру</button>
+      </form>
+    </div>
+    <div id="game-over-overlay"></div>
+    <div id="res">
+      <h1>Результаты</h1>
+      <table>
+        <tr>
+          <th style="width: 50px;">Место</th>
+          <th>Имя</th>
+          <th>Результат</th>
+          <th>Время</th>
+        </tr>
+        <tr>
+          <th style="width: 50px;">0</th>
+          <th class="1"></th>
+          <th class="1"></th>
+          <th class="1"></th>
+        </tr>
+        <tr>
+          <th style="width: 50px;">2</th>
+          <th class="1"></th>
+          <th class="1"></th>
+          <th class="1"></th>
+        </tr>
+        <tr>
+          <th style="width: 50px;">3</th>
+          <th class="1"></th>
+          <th class="1"></th>
+          <th class="1"></th>
+        </tr>
+        <tr>
+          <th style="width: 50px;">4</th>
+          <th class="1"></th>
+          <th class="1"></th>
+          <th class="1"></th>
+        </tr>
+        <tr>
+          <th style="width: 50px;">5</th>
+          <th class="1"></th>
+          <th class="1"></th>
+          <th class="1"></th>
+        </tr>
+        <tr>
+          <th style="width: 50px;">6</th>
+          <th class="1"></th>
+          <th class="1"></th>
+          <th class="1"></th>
+        </tr>
+        <tr>
+          <th style="width: 50px;">7</th>
+          <th class="1"></th>
+          <th class="1"></th>
+          <th class="1"></th>
+        </tr>
+        <tr>
+          <th style="width: 50px;">8</th>
+          <th class="1"></th>
+          <th class="1"></th>
+          <th class="1"></th>
+        </tr>
+        <tr>
+          <th style="width: 50px;">9</th>
+          <th class="1"></th>
+          <th class="1"></th>
+          <th class="1"></th>
+        </tr>
+        <tr>
+          <th style="width: 50px;">10</th>
+          <th class="1"></th>
+          <th class="1"></th>
+          <th class="1"></th>
+        </tr>
+      </table>
+      <button id="play-again">Играть сначала</button>
+    </div>
+    <script src="./js/variables.js"></script>
+    <script src="./js/game.js"></script>
+  </body>
+</html>
